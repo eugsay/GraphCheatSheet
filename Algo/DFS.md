@@ -37,7 +37,8 @@ void dfs (int v) {
 
 Это наиболее общий код. Во многих случаях времена захода и выхода из вершины не важны, так же как и не важны цвета вершин (но тогда надо будет ввести аналогичный по смыслу булевский массив used). Вот наиболее простая реализация:
 
-<pre><code class="c++ language-c++">vector &lt; vector&lt;int&gt; &gt; g; // граф
+<pre><code class="c++ language-c++">
+vector &lt; vector&lt;int&gt; &gt; g; // граф
 int n; // число вершин
 
 vector&lt;char&gt; used;
