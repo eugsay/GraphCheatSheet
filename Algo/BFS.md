@@ -18,53 +18,53 @@
 Реализуем вышеописанный алгоритм на языке C++.
 
 Входные данные:
-```c++
-vector < vector<int> > g; // граф
+<pre><code class="c++ language-c++">
+vector &lt; vector&lt;int&gt; &gt; g; // граф
 int n; // число вершин
 int s; // стартовая вершина (вершины везде нумеруются с нуля)
- 
+
 // чтение графа
-```
+</code></pre>
 ...
 Сам обход:
 
- ```c++
-queue<int> q;
+<pre><code class="c++ language-c++">
+queue&lt;int&gt; q;
 q.push (s);
-vector<bool> used (n);
-vector<int> d (n), p (n);
+vector&lt;bool&gt; used (n);
+vector&lt;int&gt; d (n), p (n);
 used[s] = true;
 p[s] = -1;
 while (!q.empty()) {
-	int v = q.front();
-	q.pop();
-	for (size_t i=0; i<g[v].size(); ++i) {
-		int to = g[v][i];
-		if (!used[to]) {
-			used[to] = true;
-			q.push (to);
-			d[to] = d[v] + 1;
-			p[to] = v;
-		}
-	}
+    int v = q.front();
+    q.pop();
+    for (size_t i=0; i&lt;g[v].size(); ++i) {
+        int to = g[v][i];
+        if (!used[to]) {
+            used[to] = true;
+            q.push (to);
+            d[to] = d[v] + 1;
+            p[to] = v;
+        }
+    }
 }
-```
+</code></pre>
 
 Если теперь надо восстановить и вывести кратчайший путь до какой-то вершины \rm to, это можно сделать следующим образом:
 
-```c++
+<pre><code class="c++ language-c++">
 if (!used[to])
-	cout << "No path!";
+    cout &lt;&lt; "No path!";
 else {
-	vector<int> path;
-	for (int v=to; v!=-1; v=p[v])
-		path.push_back (v);
-	reverse (path.begin(), path.end());
-	cout << "Path: ";
-	for (size_t i=0; i<path.size(); ++i)
-		cout << path[i] + 1 << " ";
+    vector&lt;int&gt; path;
+    for (int v=to; v!=-1; v=p[v])
+        path.push_back (v);
+    reverse (path.begin(), path.end());
+    cout &lt;&lt; "Path: ";
+    for (size_t i=0; i&lt;path.size(); ++i)
+        cout &lt;&lt; path[i] + 1 &lt;&lt; " ";
 }
-```
+</code></pre>
 
 ## Применения алгоритма
 - Поиск кратчайшего пути в невзвешенном графе.
