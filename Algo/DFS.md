@@ -14,32 +14,27 @@
 Перекрашиваем вершину u в чёрный цвет.
 Часто используют двухцветные метки — без серого, на 1-м шаге красят сразу в чёрный цвет.
 
-### Содержание
-- [Поиск в глубину](#%D0%BF%D0%BE%D0%B8%D1%81%D0%BA-%D0%B2-%D0%B3%D0%BB%D1%83%D0%B1%D0%B8%D0%BD%D1%83)
-	- [Описание алгоритма](#%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D0%B0)
-		- [Содержание](#%D1%81%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5)
-	- [Реализация](#%D1%80%D0%B5%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F)
-	- [Применения алгоритма](#%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F-%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC%D0%B0)
 ## Реализация
-```c++
-vector < vector<int> > g; // граф
+
+<pre><code class="c++ language-c++">vector &lt; vector&lt;int&gt; &gt; g; // граф
 int n; // число вершин
 
-vector<int> color; // цвет вершины (0, 1, или 2)
+vector&lt;int&gt; color; // цвет вершины (0, 1, или 2)
 
-vector<int> time_in, time_out; // "времена" захода и выхода из вершины
+vector&lt;int&gt; time_in, time_out; // "времена" захода и выхода из вершины
 int dfs_timer = 0; // "таймер" для определения времён
 
 void dfs (int v) {
-	time_in[v] = dfs_timer++;
-	color[v] = 1;
-	for (vector<int>::iterator i=g[v].begin(); i!=g[v].end(); ++i)
-		if (color[*i] == 0)
-			dfs (*i);
-	color[v] = 2;
-	time_out[v] = dfs_timer++;
+    time_in[v] = dfs_timer++;
+    color[v] = 1;
+    for (vector&lt;int&gt;::iterator i=g[v].begin(); i!=g[v].end(); ++i)
+        if (color[*i] == 0)
+            dfs (*i);
+    color[v] = 2;
+    time_out[v] = dfs_timer++;
 }
-```
+</code></pre>
+
 Это наиболее общий код. Во многих случаях времена захода и выхода из вершины не важны, так же как и не важны цвета вершин (но тогда надо будет ввести аналогичный по смыслу булевский массив used). Вот наиболее простая реализация:
 ```c++
 vector < vector<int> > g; // граф
