@@ -36,19 +36,19 @@ void dfs (int v) {
 </code></pre>
 
 Это наиболее общий код. Во многих случаях времена захода и выхода из вершины не важны, так же как и не важны цвета вершин (но тогда надо будет ввести аналогичный по смыслу булевский массив used). Вот наиболее простая реализация:
-```c++
-vector < vector<int> > g; // граф
+
+<pre><code class="c++ language-c++">vector &lt; vector&lt;int&gt; &gt; g; // граф
 int n; // число вершин
 
-vector<char> used;
+vector&lt;char&gt; used;
 
 void dfs (int v) {
-	used[v] = true;
-	for (vector<int>::iterator i=g[v].begin(); i!=g[v].end(); ++i)
-		if (!used[*i])
-			dfs (*i);
+    used[v] = true;
+    for (vector&lt;int&gt;::iterator i=g[v].begin(); i!=g[v].end(); ++i)
+        if (!used[*i])
+            dfs (*i);
 }
-```
+</code></pre>
 
 ## Применения алгоритма
 - Поиск любого пути в графе.
